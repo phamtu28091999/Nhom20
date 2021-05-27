@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vn" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Danh sách mặt hàng</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+	<div class="container" style="margin-top: 30px">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+
+				<div th:include="header.html"></div>
+
+				<form th:action="@{/book/search}" class="navbar-form navbar-right">
+					<div class="form-group">
+						<input type="text" class="form-control" name="keyword"
+							id="keyword" size="50" th:value="${keyword}">
+					</div>
+					<input type="submit" value="Tìm kiếm" class="btn btn-default">
+				</form>
+			</div>
+		</nav>
+
+		<div>
+			<h2 style="text-align: center;">Quản lí sách</h2>
+			<div th:if="${success}"
+				class="row alert alert-success alert-dismissible">
+				<span th:text="${success}"></span>
+			</div>
+			<a href="/book/add" class="btn btn-success">Thêm mới</a>
+			<table class="table table-active">
+				<thead>
+					<tr>
+						<th>Mã sách</th>
+						<th>Hình ảnh</th>
+						<th>Tên sách</th>
+						<th>Gía bán</th>
+						<th>Tồn kho</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="b:${listBook}">
+						<th th:text="${b.id}"></th>
+						<th data-label="Hình ảnh"><img
+							style="width: 60px; height: 60px;" th:src="${b.img}" alt=""></th>
+						<th th:text="${b.name}"></th>
+						<th th:text="${b.price}"></th>
+						<th th:text="${b.number}"></th>
+						<th><a th:if="${action1}" th:href="@{/book/edit?id={id}(id=${b.id})}"
+							class="btn btn-primary">Sửa</a> <a th:if="${action1}"
+							th:href="@{/book/delete?id={id}(id=${b.id})}"
+							onclick="return confirm('Bạn muốn xóa?')" class="btn btn-danger">Xóa</a>
+							<a th:if="${action2}" th:href="@{/book/edit?id={id}(id=${b.id})}"
+							class="btn btn-info">Chọn</a></th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

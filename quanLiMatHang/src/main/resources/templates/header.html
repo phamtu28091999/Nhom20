@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="vn" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+	<div class="navbar-header">
+		<div  class="navbar-brand" style="color: white;" th:text="ADMIN"></div>
+	</div>
+
+	<ul class="nav navbar-nav">
+		<li class="active"><a th:href="@{/../home/}">Trang chủ</a></li>
+		<li class="active"><a th:href="@{/book/}">Quản lí mặt hàng</a></li>
+		<li class="active"><a th:href="@{/supplier/}">Quản nhà cung cấp</a></li>
+		<li class="active"><a th:href="@{/order/}">Nhập đơn hàng</a></li>
+	</ul>
+</body>
+</html>

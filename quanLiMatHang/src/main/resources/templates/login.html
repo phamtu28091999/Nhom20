@@ -1,0 +1,57 @@
+<!DOCTYPE html >
+<html lang="vn" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link th:href="@{/css/login.css}" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+	crossorigin="anonymous">
+<style>
+.login {
+	color: red;
+	height: 10px;
+}
+</style>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div class="sidenav">
+		<div class="login-main-text">
+			<h2>
+				Trang quản lí bán hàng
+			</h2>
+			<p>Đăng nhập</p>
+		</div>
+	</div>
+	<div class="main">
+		<div class="col-md-6 col-sm-12">
+			<div class="login-form">
+				<form th:action="@{/login/check}">
+					<div class="form-group">
+						<label>Tên đăng nhập</label> <input type="text"
+							class="form-control" placeholder="Tên đăng nhập" name="username" th:value="${user}">
+						<div class="login">
+							<font size="-1.5" th:text="${erUser}"></font>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Mật khẩu</label> <input type="password"
+							class="form-control" placeholder="Mật khẩu" name="password" th:value="${pass}">
+						<div class="login">
+							<font size="-1.5" th:text="${erPass}"></font>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-black">Đăng nhập</button>
+					<button type="submit" class="btn btn-secondary">Đăng kí</button>
+					<div class="login">
+							<font size="-1.5" th:text="${erAcc}"></font>
+						</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vn" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Danh sách đơn nhập hàng</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+	<div class="container" style="margin-top: 30px">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+
+				<div th:include="header.html"></div>
+
+				<form class="navbar-form navbar-right">
+					<div class="form-group">
+						<input type="text" class="form-control" name="keyword"
+							id="keyword" size="50" th:value="${keyword}">
+					</div>
+					<input type="submit" value="Tìm kiếm" class="btn btn-default">
+				</form>
+			</div>
+		</nav>
+
+		<div>
+			<h2 style="text-align: center;">Quản lí đơn nhập hàng</h2>
+			<div th:if="${success}"
+				class="row alert alert-success alert-dismissible">
+				<span th:text="${success}"></span>
+			</div>
+			<a href="/order/addSupplier" class="btn btn-success">Thêm mới</a>
+			<table class="table table-active">
+				<thead>
+					<tr>
+						<th>Mã đơn hàng</th>
+						<th>Mã nhà cung cấp</th>
+						<th>Mã sách</th>						
+						<th>Ngày nhập</th>
+						<th>Giá nhập</th>
+						<th>Số lượng</th>
+						<th>Tổng tiền</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="o:${listOrder}">
+						<th th:text="${o.id}"></th>
+						<th th:text="${o.idsupplier}"></th>
+						<th th:text="${o.idbook}"></th>
+						<th th:text="${o.date}"></th>
+						<th th:text="${o.price}"></th>
+						<th th:text="${o.number}"></th>
+						<th th:text="${o.total}"></th>
+						<th><a th:href="@{/order/viewOrder?id={id}(id=${o.id})}" class="btn btn-primary">Xem chi tiết</a></th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

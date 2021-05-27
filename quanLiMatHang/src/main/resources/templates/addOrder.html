@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vn" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Thêm đơn hàng mới</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<style>
+.add {
+	color: red;
+	height: 10px;
+}
+
+#form {
+	width: 400px;
+	margin: auto;
+}
+</style>
+</head>
+<body>
+
+	<div class="container" style="margin-top: 30px">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+
+				<div th:include="header.html"></div>
+
+				<form th:action="@{#}" class="navbar-form navbar-right">
+					<div class="form-group">
+						<input type="text" class="form-control" name="keyword"
+							id="keyword" size="50" th:value="${keyword}">
+					</div>
+					<input type="submit" value="Tìm kiếm" class="btn btn-default">
+				</form>
+			</div>
+		</nav>
+	</div>
+
+	<div class="container col-6" id="form">
+		<h2>Thêm đơn hàng mới</h2>
+		<div class="col-md-auto">
+			<form th:object="${order}" th:action="@{/order/saveOrder?(bid=${bid},sid=${sid})}" th:method="POST">
+				<label th:for="id">Mã nhà cung cấp</label> <input type="text"
+					readonly="true" th:value="${sid}" class="form-control" />
+				<div style="clear: both; display: block; height: 10px"></div>
+				
+				<label th:for="id">Mã sách</label> <input type="text"
+					readonly="true" th:value="${bid}" class="form-control" />
+				<div style="clear: both; display: block; height: 10px"></div>
+				
+				<div>
+					<label th:for="date">Ngày nhập</label> <input type="text"
+						th:field="*{date}" class="form-control" placeholder="Ngày nhập" />
+					<div class="add">
+						<font size="-1.5" th:if="${#fields.hasErrors('date')}"
+							th:errors="*{date}"></font>
+					</div>
+				</div>
+				<div style="clear: both; display: block; height: 10px"></div>
+
+				<div>
+					<label th:for="price">Giá nhập</label> <input type="text"
+						th:field="*{price}" class="form-control" placeholder="Giá nhập" />
+					<div class="add">
+						<font size="-1.5" th:if="${#fields.hasErrors('price')}"
+							th:errors="*{price}"></font>
+					</div>
+				</div>
+				<div style="clear: both; display: block; height: 10px"></div>
+
+				<div>
+					<label>Số lượng</label> <input type="text" th:field="*{number}"
+						class="form-control" placeholder="Gia ban" />
+					<div class="number">
+						<font size="-1.5" th:if="${#fields.hasErrors('number')}"
+							th:errors="*{number}"></font>
+					</div>
+				</div>
+				<div style="clear: both; display: block; height: 10px"></div>
+				
+				<input style="margin-top: 10px" type="submit"
+					class="btn btn-success" value="Lưu">
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>
